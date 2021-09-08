@@ -2,10 +2,6 @@ from builtins import range
 from builtins import object
 import numpy as np
 
-from cs231n.layers import *
-from cs231n.layer_utils import *
-
-
 class TwoLayerNet(object):
     """
     A two-layer fully-connected neural network with ReLU nonlinearity and
@@ -47,7 +43,10 @@ class TwoLayerNet(object):
         # weights and biases using the keys 'W1' and 'b1' and second layer weights #
         # and biases using the keys 'W2' and 'b2'.                                 #
         ############################################################################
-        pass
+        self.params['W1'] = np.random.randn(input_dim, hidden_dim) * weight_scale
+        self.params['W2'] = np.random.randn(hidden_dim, num_classes) * weight_scale
+        self.params['b1'] = np.zeros(hidden_dim)
+        self.params['b2'] = np.zeros(num_classes)
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
@@ -77,7 +76,14 @@ class TwoLayerNet(object):
         # TODO: Implement the forward pass for the two-layer net, computing the    #
         # class scores for X and storing them in the scores variable.              #
         ############################################################################
-        pass
+        W1 = self.params['W1']
+        W2 = self.params['W2']
+        b1 = self.params['b1']
+        b2 = self.params['b2']
+
+        buff = X.dot(W1) + b1
+        hiddenLayer = np.maximum(0, buff)
+        scores = hiddenLayer.dot(W2) + b2
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
@@ -97,7 +103,30 @@ class TwoLayerNet(object):
         # automated tests, make sure that your L2 regularization includes a factor #
         # of 0.5 to simplify the expression for the gradient.                      #
         ############################################################################
-        pass
+
+        scores_exp = np.exp(scores)
+        scores_exp_sum = np.sum(scores_exp, axis=1)
+        correct_exp = scores_exp[range(X.shape[0]), y]
+        loss = np.sum(-np.log(correct_exp / scores_exp_sum)) / X.shape[0] + self.reg * 0.5 * (np.sum(W1 ** 2) + np.sum(W2 ** 2))
+
+        s = scores_exp / scores_exp_sum.reshape(X.shape[0], 1)
+        s[range(X.shape[0]), y] = -(scores_exp_sum - correct_exp) / scores_exp_sum
+        s /= X.shape[0]
+
+        dW2 = hiddenLayer.T.dot(s)
+        db2 = np.sum(s, axis=0)
+
+        hidden = s.dot(W2.T)
+        hidden[hiddenLayer == 0] = 0
+
+        dW1 = X.T.dot(hidden)
+        db1 = np.sum(hidden, axis=0)
+
+        grads['W2'] = dW2 + self.reg * W2
+        grads['b2'] = db2
+        grads['W1'] = dW1 + self.reg * W1
+        grads['b1'] = db1
+
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################

@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="649b640c-cdde-4ce4-9e09-156cddea25be" name="Changes" comment="" />
+    <list default="true" id="649b640c-cdde-4ce4-9e09-156cddea25be" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/CS231n Assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CS231n Assignment.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2_2017/.ipynb_checkpoints/FullyConnectedNets-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/assignment2_2017/.ipynb_checkpoints/FullyConnectedNets-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2_2017/FullyConnectedNets.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/assignment2_2017/FullyConnectedNets.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2_2017/cs231n/classifiers/fc_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/assignment2_2017/cs231n/classifiers/fc_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2_2017/cs231n/layer_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/assignment2_2017/cs231n/layer_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2_2017/cs231n/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/assignment2_2017/cs231n/layers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assignment2_2017/cs231n/solver.py" beforeDir="false" afterPath="$PROJECT_DIR$/assignment2_2017/cs231n/solver.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1x5ai7j2syMMECa7Ui2daozhYBb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -16,6 +30,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -26,6 +44,7 @@
       <option name="presentableId" value="Default" />
       <updated>1629647528846</updated>
       <workItem from="1629647534026" duration="52000" />
+      <workItem from="1631096041355" duration="1333000" />
     </task>
     <servers />
   </component>
