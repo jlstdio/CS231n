@@ -1,6 +1,6 @@
 import numpy as np
 from past.builtins import xrange
-
+import math
 
 class KNearestNeighbor(object):
   """ a kNN classifier with L2 distance """
@@ -73,7 +73,11 @@ class KNearestNeighbor(object):
         # training point, and store the result in dists[i, j]. You should   #
         # not use a loop over dimension.                                    #
         #####################################################################
-        pass
+        arr = X[i] - self.X_train[j]
+        arr = arr ** 2
+        arr = sum(arr)
+        dists[i, j] = math.sqrt(arr)
+        # print(f"{i}, {j}")
         #####################################################################
         #                       END OF YOUR CODE                            #
         #####################################################################
@@ -95,7 +99,10 @@ class KNearestNeighbor(object):
       # Compute the l2 distance between the ith test point and all training #
       # points, and store the result in dists[i, :].                        #
       #######################################################################
-      pass
+        arr = X[i] - self.X_train[:]
+        arr = arr ** 2
+        arr = arr.sum(axis = 1)
+        dists[i] = arr ** (1/2)
       #######################################################################
       #                         END OF YOUR CODE                            #
       #######################################################################
@@ -123,7 +130,27 @@ class KNearestNeighbor(object):
     # HINT: Try to formulate the l2 distance using matrix multiplication    #
     #       and two broadcast sums.                                         #
     #########################################################################
-    pass
+    X_square = X[:] ** 2
+    Sum_X_square = X_square.sum(axis = 1) # (500, )
+    # print(Sum_X_square)
+    Sum_X_square = np.tile(Sum_X_square, reps=[self.X_train.shape[0], 1])
+    Sum_X_square = np.transpose(Sum_X_square)
+    # print(Sum_X_square.shape)
+    
+    X_train_square = self.X_train[:] ** 2
+    Sum_X_train_square = X_train_square.sum(axis = 1) # (5000, )
+    Sum_X_train_square = np.tile(Sum_X_train_square, reps=[X.shape[0], 1])
+    # print(Sum_X_train_square.shape)
+    
+    dists = Sum_X_square + Sum_X_train_square
+    
+    X_train_T = np.transpose(self.X_train)
+    middle_body = X.dot(X_train_T) * 2 # (500, 5000)
+    # print(middle_body.shape)
+    
+    dists -= middle_body
+    dists = dists ** (1/2)
+    
     #########################################################################
     #                         END OF YOUR CODE                              #
     #########################################################################
@@ -155,7 +182,8 @@ class KNearestNeighbor(object):
       # neighbors. Store these labels in closest_y.                           #
       # Hint: Look up the function numpy.argsort.                             #
       #########################################################################
-      pass
+      k_nearest_idxs = np.argsort(dists[i, :])[:k]
+      closest_y = self.y_train[k_nearest_idxs]
       #########################################################################
       # TODO:                                                                 #
       # Now that you have found the labels of the k nearest neighbors, you    #
@@ -163,7 +191,7 @@ class KNearestNeighbor(object):
       # Store this label in y_pred[i]. Break ties by choosing the smaller     #
       # label.                                                                #
       #########################################################################
-      pass
+      y_pred[i] = np.argmax(np.bincount(closest_y))
       #########################################################################
       #                           END OF YOUR CODE                            # 
       #########################################################################
